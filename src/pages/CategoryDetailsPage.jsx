@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import AddPose from "../components/AddPose";
+
 import PoseCard from "../components/PoseCard";
 
 const API_URL = "http://localhost:5005"; 
@@ -13,10 +14,13 @@ function CategoryDetailsPage (props) {
   const { categoryId } = useParams();
 
   const getCategory = () => {        
-    axios
-      .get(`${API_URL}/api/categories/${categoryId}`)
+  axios
+      .get(
+        `${API_URL}/api/categories/${categoryId}`,
+        { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
       .then((response) => {
-        const oneCategory = response.data;
+        const oneProject = response.data;
         setCategory(oneCategory);
       })
       .catch((error) => console.log(error));

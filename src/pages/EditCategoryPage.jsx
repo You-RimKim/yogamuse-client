@@ -11,9 +11,15 @@ function EditCategoryPage(props) {
   const { categoryId } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {                                  
-    axios
-      .get(`${API_URL}/api/categories/${categoryId}`)
+  useEffect(() => {        
+    
+    const storedToken = localStorage.getItem('authToken');
+
+  axios
+      .get(
+        `${API_URL}/api/categories/${categoryId}`,
+        { headers: { Authorization: `Bearer ${storedToken}` } }    
+      )
       .then((response) => {
         const oneCategory = response.data;
         setTitle(oneCategory.category_name);
@@ -21,32 +27,38 @@ function EditCategoryPage(props) {
       })
       .catch((error) => console.log(error));
     
-  }, [categoryId]);
+  }, [projectId]);
 
   const handleFormSubmit = (e) => {                     
     e.preventDefault();
 
     const requestBody = { category_name, category_description };
- 
+
+    const storedToken = localStorage.getItem('authToken');  
+
     axios
-      .put(`${API_URL}/api/categories/${categoryId}`, requestBody)
-      .then((response) => {
-        // Once the request is resolved successfully and the category
-        // is updated we navigate back to the details page
-        navigate(`/categories/${categoryId}`)
-      });
+    .put(
+      `${API_URL}/api/categoriescategories/${categoryId}`,
+      requestBody,
+      { headers: { Authorization: `Bearer ${storedToken}` } }              
+    )
+    .then((response) => {
+      navigate(`/categories/${categoryId}`)
+    });
   };
 
   const deleteCategory = () => {                   
 
-    axios
-      .delete(`${API_URL}/api/categories/${categoryId}`)
-      .then(() => {
+    const storedToken = localStorage.getItem('authToken');      
 
-        navigate("/categories");
-      })
-      .catch((err) => console.log(err));
-  };  
+    axios
+        .delete(
+          `${API_URL}/api/categories/${categoryId}`,
+          { headers: { Authorization: `Bearer ${storedToken}` } }           
+        )
+        .then(() => navigate("/categories"))
+        .catch((err) => console.log(err));
+    };
   
   return (
     <div className="EditCategoryPage">
