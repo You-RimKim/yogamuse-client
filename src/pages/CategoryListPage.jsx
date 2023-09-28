@@ -11,8 +11,13 @@ function CategoryListPage() {
   const [categories, setCategories] = useState([]);
 
   const getAllCategories = () => {
-    axios
-      .get(`${API_URL}/api/categories`)
+
+    const storedToken = localStorage.getItem("authToken");
+
+  axios
+      .get(`${API_URL}/api/categories`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => setCategories(response.data))
       .catch((error) => console.log(error));
   };
