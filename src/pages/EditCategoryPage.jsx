@@ -27,7 +27,7 @@ function EditCategoryPage(props) {
       })
       .catch((error) => console.log(error));
     
-  }, [projectId]);
+  }, [categoryId]);
 
   const handleFormSubmit = (e) => {                     
     e.preventDefault();

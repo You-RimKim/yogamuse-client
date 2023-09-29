@@ -11,6 +11,10 @@ import LoginPage from "./pages/LoginPage";
 import IsPrivate from "./components/IsPrivate"; 
 import IsAnon from "./components/IsAnon";
 
+import AllCategories from "./pages/AllCategories";
+import CategorySelectionPage from "./pages/CategorySelection";
+import PoseDetailsPage from "./pages/PoseDetailsPage";
+
 function App() {
   return (
     <div className="App">
@@ -20,23 +24,32 @@ function App() {
         <Route path="/" element={ <HomePage /> } />
  
         <Route
-          path="/projects"
-          element={ <IsPrivate> <ProjectListPage /> </IsPrivate> } 
+          path="/categories"
+          element={<CategoryListPage /> } 
+          // element={ <IsPrivate> <CategoryListPage /> </IsPrivate> } 
         />
  
         <Route
-          path="/projects/:projectId"
-          element={ <IsPrivate> <ProjectDetailsPage /> </IsPrivate> }
+          path="/categories/:categoryId"
+          element={<CategoryDetailsPage />}
+          // element={ <IsPrivate> <CategoryDetailsPage /> </IsPrivate> }
         />
  
         <Route
-          path="/projects/edit/:projectId"
-          element={ <IsPrivate> <EditProjectPage /> </IsPrivate> } 
+          path="/categories/edit/:categoryId"
+          element={<EditCategoryPage /> }
+          // element={ <IsPrivate> <EditCategoryPage /> </IsPrivate> } 
         />
         
         <Route path="/signup" element={<IsAnon> <SignupPage /> </IsAnon>} />
         <Route path="/login" element={<IsAnon> <LoginPage /> </IsAnon>} />
- 
+
+        <Route path="/allcat" element={<IsAnon> <AllCategories /> </IsAnon>} />
+        <Route path="/singlecat" element={<IsAnon> <AllCategories /> </IsAnon>} />
+
+        <Route path="/poses" element={<CategorySelectionPage />} />
+        <Route path="/poses/:category" element={<PoseDetailsPage />} />
+
       </Routes>
     </div>
   );

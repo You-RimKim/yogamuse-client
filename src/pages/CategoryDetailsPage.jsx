@@ -13,14 +13,15 @@ function CategoryDetailsPage (props) {
 
   const { categoryId } = useParams();
 
-  const getCategory = () => {        
+  const getCategory = () => {      
+    const storedToken = localStorage.getItem("authToken");
   axios
       .get(
         `${API_URL}/api/categories/${categoryId}`,
         { headers: { Authorization: `Bearer ${storedToken}` } }
       )
       .then((response) => {
-        const oneProject = response.data;
+        const oneCategory = response.data;
         setCategory(oneCategory);
       })
       .catch((error) => console.log(error));
