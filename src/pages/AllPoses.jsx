@@ -20,10 +20,10 @@ function AllCategories() {
   }, []);
 
   return (
-    <div className="AllCaOneCattegories">
+    <div className="allPoses">
       <h2>Yoga Categories</h2>
       {categories.map((category) => (
-        <div key={category.id} className="allCategories2">
+        <div key={category.id} className="allPoses">
           <h3>{category.category_name}</h3>
           <p>{category.category_description}</p>
           <ul>
