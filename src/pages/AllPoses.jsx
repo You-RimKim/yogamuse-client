@@ -4,20 +4,29 @@ import axios from "axios";
 function AllPoses() {
   const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await axios.get(
-          "https://yoga-api-nzy4.onrender.com/v1/categories"
-        );
-        setCategories(response.data);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
 
-    fetchCategories();
-  }, []);
+  useEffect(() => {
+    axios.get("http://localhost:5005/api/poses")
+    .then((response)=> {
+      console.log(response)
+    })
+
+  },[])
+
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://yoga-api-nzy4.onrender.com/v1/categories"
+  //       );
+  //       setCategories(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching categories:", error);
+  //     }
+  //   };
+
+  //   fetchCategories();
+  // }, []);
 
   return (
     <div className="allPoses">

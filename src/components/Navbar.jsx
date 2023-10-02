@@ -19,6 +19,10 @@ function Navbar() {
             <button>Categories</button>
           </Link>
 
+          <Link to="/my-favorites">
+            <button>Favorites</button>
+          </Link>
+
           <button onClick={logOutUser}>Logout</button>
           <span>{user && user.name}</span>
         </>

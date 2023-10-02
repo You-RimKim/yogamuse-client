@@ -55,7 +55,7 @@ function CategoriesPage() {
       <ul>
         {categories.map((category) => (
           <li key={category.id}>
-            <Link to={`/poses/${category.category_name}`}>
+            <Link to={`/categories/${category.category_name}`}>
               {category.category_name}
             </Link>
           </li>

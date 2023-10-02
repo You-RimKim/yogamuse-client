@@ -18,6 +18,7 @@ import CategoryDetailsPage from "./pages/CategoryDetailsPage";
 import UserProfile from "./pages/UserProfile";
 import FavoritesPage from "./pages/FavoritesPage";
 import EditPosePage from "./pages/EditPosePage";
+import FavoriteDetailsPage from "./pages/FavoriteDetailsPage";
 
 function App() {
   return (
@@ -62,7 +63,8 @@ function App() {
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/categories/:category" element={<CategoryDetailsPage />} />
 
-        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/my-favorites" element={<FavoritesPage />} />
+        <Route path="/favorites/details" element={<FavoriteDetailsPage />} />
       </Routes>
     </div>
   );
