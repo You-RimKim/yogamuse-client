@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 //import { Link, useNavigate } from "react-router-dom";
 
-export default function PoseDetailsPage () {
+export default function CategoryDetailsPage () {
     const [onePose, setOnePose] = useState({});
 
     const {category} = useParams()

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function AllCategories() {
+function AllPoses() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function AllCategories() {
 
   return (
     <div className="allPoses">
-      <h2>Yoga Categories</h2>
+      <h2>Yoga Poses</h2>
       {categories.map((category) => (
         <div key={category.id} className="allPoses">
           <h3>{category.category_name}</h3>
@@ -43,4 +43,4 @@ function AllCategories() {
   );
 }
 
-export default AllCategories;
+export default AllPoses;

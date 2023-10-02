@@ -8,57 +8,56 @@ import PoseCard from "../components/PoseCard";
 const API_URL = "http://localhost:5005"; 
 
 
-function CategoryDetailsPage (props) {
-  const [category, setCategory] = useState(null);
+function AddNewPose (props) {
+  const [newPose, setNewPose] = useState(null);
 
-  const { categoryId } = useParams();
+  const { poseId } = useParams();
 
-  const getCategory = () => {      
+  const getPose = () => {      
     const storedToken = localStorage.getItem("authToken");
   axios
       .get(
-        `${API_URL}/api/categories/${categoryId}`,
+        `${API_URL}/api/categories/${poseId}`,
         { headers: { Authorization: `Bearer ${storedToken}` } }
       )
       .then((response) => {
-        const oneCategory = response.data;
-        setCategory(oneCategory);
+        const onePose = response.data;
+        setNewPose(onePose);
       })
       .catch((error) => console.log(error));
   };
 
   useEffect(()=> {                   
-    getCategory();
+    getPose();
   }, [] );
 
   
   return (
-    <div className="CategoryDetails">
+    <div className="PoseDetails">
       
-      {category && (
+      {newPose && (
         <>
-          <h1>{category.category_name}</h1>
-          <p>{category.category_description}</p>
+          <h1>{newPose.category_name}</h1>
+          <p>{newPose.category_description}</p>
         </>
       )}
 
-      <AddPose refreshCategory={getCategory} categoryId={categoryId} />
+      <AddPose refreshNewPose={getPose} poseId={poseId} />
 
-      { category && category.poses.map((pose) => (
+      { newPose && newPose.poses.map((pose) => (
         <PoseCard key={pose._id} {...pose} /> 
       ))} 
       
- 
-      <Link to="/categories">
-        <button>Back to categories</button>
+      <Link to="/poses">
+        <button>Back to all poses</button>
       </Link>
-      
-      <Link to={`/categories/edit/${categoryId}`}>
-        <button>Edit category</button>
+
+      <Link to={`/favorites`}>
+        <button>Go to my favorites</button>
       </Link>      
       
     </div>
   );
 }
  
-export default CategoryDetailsPage;
+export default AddNewPose;
