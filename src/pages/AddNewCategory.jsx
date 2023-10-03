@@ -18,7 +18,11 @@ function AddNewCategory() {
       .get(`${API_URL}/api/categories`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((response) => setNewCategories(response.data))
+      .then((response) => {
+        console.log(response.data);
+        setNewCategories(response.data);
+      })
+
       .catch((error) => console.log(error));
   };
 

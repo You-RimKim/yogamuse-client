@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
-  const { id } = useParams(); 
 
   const [user, setUser] = useState({
     name: "",
@@ -12,12 +11,13 @@ const UserProfile = () => {
   });
 
   const [isEditing, setIsEditing] = useState(false);
-  //const [favorites, setFavorites] = useState([]);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`http://localhost:5005/api/user/${id}`, {
+      .get(`http://localhost:5005/api/user`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -26,13 +26,74 @@ const UserProfile = () => {
       .catch((error) => {
         console.error("Error fetching user:", error);
       });
-  }, [id]);
+  }, []);
+
+  const handleLogout = () => {
+    // Clear the authentication token from local storage
+    localStorage.removeItem("authToken");
+    // Redirect to the homepage ("/")
+    navigate("/");
+  };
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can implement logic to update user data on the server here
+
+    if (isEditing) {
+      // Send a PUT request to update user information
+      const updatedUserInfo = {
+        name: user.name,
+        email: user.email,
+        password: user.password,
+      };
+  
+      const storedToken = localStorage.getItem('authToken');
+      axios
+        .put(`http://localhost:5005/api/user`, updatedUserInfo, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => {
+          // Handle successful update
+          console.log('User updated:', response.data);
+        })
+        .catch((error) => {
+          console.error('Error updating user:', error);
+        });
+    } else {
+      // Send a DELETE request to delete the user profile
+      const storedToken = localStorage.getItem('authToken');
+
+      axios
+        .delete(`http://localhost:5005/api/user`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => {
+          // Handle successful deletion
+          console.log('User deleted:', response.data);
+          handleLogout();
+          // navigate( '/' );
+        })
+        .catch((error) => {
+          console.error('Error deleting user:', error);
+        });
+
+        axios
+        .post(`http://localhost:5005/api/logout`, {}, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then(() => {
+          // Clear the authentication token from local storage
+          localStorage.removeItem("authToken");
+          // Redirect to the homepage ("/")
+          navigate("/");
+        })
+        .catch((error) => {
+          console.error("Error logging out:", error);
+        });
+    }
+
     setIsEditing(false);
+    setIsDeleting(false);
   };
 
   const handleInputChange = (e) => {
@@ -40,6 +101,8 @@ const UserProfile = () => {
     setUser((prevUser) => ({
       ...prevUser,
       [name]: value,
+      // [email]: value,
+      // [password]: value,
     }));
   };
 
@@ -92,62 +155,29 @@ const UserProfile = () => {
             <strong>Email:</strong> {user.email}
           </p>
           <button onClick={() => setIsEditing(true)}>Edit Profile</button>
+          <button onClick={() => setIsDeleting(true)}>Delete Profile</button>
         </div>
       )}
 
+      <form onSubmit={handleSubmit}>
+            {isDeleting && (
+              <div>
+                <p>
+                  Are you sure you want to delete your profile? This action cannot be undone.
+                </p>
+                <button type="submit">Confirm Deletion</button>
+              </div>
+            )}
+          </form>
+        </div>
+      );
+      };
+
       {/* Rest of your code */}
-    </div>
-  );
-};
 
 export default UserProfile;
 
 
-
-// import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-
-// const UserProfile() => {
-//   const { id } = useParams(); 
-
-//   const [user, setUser] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//   });
-
-//   const [isEditing, setIsEditing] = useState(false);
-
-//   useEffect(() => {
-//     const storedToken = localStorage.getItem("authToken");
-//     axios.get(`http://localhost:5005/api/user/${user.id}`, {
-//       headers: { Authorization: `Bearer ${storedToken}` },
-//     })
-//     .then((response) => {
-//       setFavorites(response.data);
-//     })
-//     .catch((error) => {
-//       console.error("Error fetching favorites:", error);
-//     });
-//   }, []);
-
-
-// // const UserProfile = () => {
-// //   // Sample user data (you can replace this with actual user data)
-// //   const [user, setUser] = useState({
-// //     firstName: 'John',
-// //     lastName: 'Doe',
-// //     email: 'johndoe@example.com',
-// //   });
-
-// //   const [isEditing, setIsEditing] = useState(false);
-
-// //   // Function to handle form submission when editing
-// //   const handleSubmit = (e) => {
-// //     e.preventDefault();
-// //     // You can implement logic to update user data on the server here
-// //     setIsEditing(false);
-// //   };
 
 //   const [selectedYogaStyle, setSelectedYogaStyle] = useState(''); // To store the selected yoga style
 //   const [selectedTeachingLevel, setSelectedTeachingLevel] = useState(''); // To store the selected teaching level

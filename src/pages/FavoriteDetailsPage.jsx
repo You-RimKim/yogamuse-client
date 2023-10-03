@@ -1,23 +1,20 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
 export default function FavoriteDetailsPage() {
   const [favorite, setFavorite] = useState(null);
-  const { id } = useParams();
+  const [categories, setCategories] = useState([]);
+  const { favoritesId } = useParams();
   const {getToken} = useContext(AuthContext)
-
-
-console.log(getToken())
-
-console.log("Here is the Id that we are looking for ---",id)
+  const navigate = useNavigate();
 
 useEffect(() => {
   const fetchFavorite = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5005/api/my-favorites/${id}`,
+        `http://localhost:5005/api/my-favorites/${favoritesId}`,
         {
           method: 'GET',
           headers: {
@@ -27,7 +24,6 @@ useEffect(() => {
       );
       const data = await response.json()
       setFavorite(data)
-      console.log("RESPONSE-----------",data);
 
       if (!response.ok) {
         throw new Error("Failed to fetch favorites");
@@ -41,39 +37,48 @@ useEffect(() => {
   fetchFavorite();
 }, []);
 
+const handleDeleteCategory = () => {
+  const storedToken = getToken();
 
-// useEffect(() => {
-//     const fetchFavorite = async () => {
-//       try {
-//         const response = await fetch(
-//           `http://localhost:5005/api/my-favorites/${favoriteId}`, {...favorite}
-//           , { headers: { Authorization: `Bearer ${getToken()}` },
-//         });
-        
-//         console.log(response)
+  axios
+    .delete(`http://localhost:5005/api/my-favorites/${favoritesId}`, {
+      headers: {
+        Authorization: `Bearer ${storedToken}`,
+      },
+    })
+    .then((response) => {
+      console.log('Category deleted:', response.data);
 
-//         if (!response.ok) {
-//           throw new Error("Failed to fetch favorites");
-//         }
-//         // const categoryData = await response.json();
+      setCategories((prevCategories) =>
+      prevCategories.filter(
+        (category) => category.category_id !== favoritesId
+      )
+    );
 
-    
-//       } catch (error) {
-//         console.error("Error fetching favorites:", error);
-//       }
-//     };
-
-//     fetchFavorite();
-// //  axios.get()
-
-
-
-//   }, []);
+      navigate( '/my-favorites' );
+    })
+    .catch((error) => {
+      console.error('Error deleting category:', error);
+    });
+}
   
 
     return (
         <div className="FavoriteCategory">
         <h2>Favorite Categories</h2>
+
+        <button onClick={() => handleDeleteCategory(favorite.category_id)}>
+          Delete Category
+        </button>
+
+        <Link to="/my-favorites/edit/:favoritesId">
+        <button>Edit my favorites</button>
+        </Link>
+
+        <Link to="/my-favorites/edit/:favoritesId">
+        <button>Add a pose</button>
+        </Link>
+
         {favorite && (
             <>
             <h3>{favorite.category_name}</h3>
@@ -93,9 +98,8 @@ useEffect(() => {
             </ul>
             </>
         )}
-        <Link to="/my-favorites">
-        <button>Back to my favorites</button>
-      </Link>
+
+        
         </div>
     );
     }

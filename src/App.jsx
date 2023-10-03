@@ -19,6 +19,7 @@ import UserProfile from "./pages/UserProfile";
 import FavoritesPage from "./pages/FavoritesPage";
 import EditPosePage from "./pages/EditPosePage";
 import FavoriteDetailsPage from "./pages/FavoriteDetailsPage";
+import EditFavoritesPage from "./pages/EditFavoritesPage";
 
 function App() {
   return (
@@ -64,7 +65,8 @@ function App() {
         <Route path="/categories/:category" element={<CategoryDetailsPage />} />
 
         <Route path="/my-favorites" element={<FavoritesPage />} />
-        <Route path="/my-favorites/:id" element={<FavoriteDetailsPage />} />
+        <Route path="/my-favorites/:favoritesId" element={<FavoriteDetailsPage />} />
+        <Route path="/my-favorites/edit/:favoritesId" element={<EditFavoritesPage />} />
       </Routes>
     </div>
   );

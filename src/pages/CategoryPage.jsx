@@ -31,7 +31,6 @@ function CategoryPage() {
     <div>
       <h2>{categoryData.category_name}</h2>
       <p>{categoryData.category_description}</p>
-      {/* Add more content for the category */}
     </div>
   );
 }
