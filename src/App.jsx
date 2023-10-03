@@ -64,7 +64,7 @@ function App() {
         <Route path="/categories/:category" element={<CategoryDetailsPage />} />
 
         <Route path="/my-favorites" element={<FavoritesPage />} />
-        <Route path="/favorites/details" element={<FavoriteDetailsPage />} />
+        <Route path="/my-favorites/:id" element={<FavoriteDetailsPage />} />
       </Routes>
     </div>
   );

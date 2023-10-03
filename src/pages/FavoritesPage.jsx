@@ -8,19 +8,18 @@ export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    // Fetch the user's favorites from the backend
     const storedToken = localStorage.getItem("authToken");
     axios.get("http://localhost:5005/api/my-favorites", {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
     .then((response) => {
+      console.log(response)
       setFavorites(response.data);
     })
     .catch((error) => {
       console.error("Error fetching favorites:", error);
     });
   }, []);
-
   return (
     <div className="FavoritesPage">
       <h2>My Favorites</h2>
