@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import AddPose from "../components/AddPose";
-
 import PoseCard from "../components/PoseCard";
 
 const API_URL = "http://localhost:5005"; 
@@ -10,7 +9,6 @@ const API_URL = "http://localhost:5005";
 
 function AddNewPose (props) {
   const [newPose, setNewPose] = useState(null);
-
   const { poseId } = useParams();
 
   const getPose = () => {      
@@ -29,7 +27,7 @@ function AddNewPose (props) {
 
   useEffect(()=> {                   
     getPose();
-  }, [] );
+  }, [poseId] );
 
   
   return (
@@ -48,11 +46,7 @@ function AddNewPose (props) {
         <PoseCard key={pose._id} {...pose} /> 
       ))} 
       
-      <Link to="/poses">
-        <button>Back to all poses</button>
-      </Link>
-
-      <Link to={`/favorites`}>
+      <Link to={"/my-favorites"}>
         <button>Go to my favorites</button>
       </Link>      
       

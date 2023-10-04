@@ -17,19 +17,22 @@ function AddPose(props) {
     e.preventDefault();
 
     // We need the category id when creating the new pose
-    const { categoryId } = props;
-    // Create an object representing the body of the POST request
+    const { favoritesId } = props;
     const requestBody = { 
-      id, 
       english_name, 
       sanskrit_name,
       pose_description,
       pose_benefits,
       url_png,
-      category };
+     };
  
     axios
-      .post(`${API_URL}/api/poses`, requestBody)
+      .post(`${API_URL}/api/my-favorites/${favoritesId}/add-pose`, 
+      requestBody, 
+        { headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
       .then((response) => {
         // Reset the state to clear the inputs
         setEnglishName("");
@@ -38,9 +41,8 @@ function AddPose(props) {
         setPoseBenefits("");
         setUrlPng("");
       
-        // Invoke the callback function coming through the props
-        // from the CategoryDetailsPage, to refresh the category details
-        props.refreshCategory();
+        //props.refreshCategory();
+        props.refreshFavorite();
       })
       .catch((error) => console.log(error));
   };

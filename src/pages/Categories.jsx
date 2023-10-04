@@ -8,6 +8,10 @@ function CategoriesPage() {
   //const navigate = useNavigate();
 
   useEffect(() => {
+    fetchCategories();
+  }, []);
+
+
     const fetchCategories = async () => {
       try {
         // Fetch categories
@@ -46,8 +50,6 @@ function CategoriesPage() {
       }
     };
 
-    fetchCategories();
-  }, []);
 
   return (
     <div>
@@ -61,13 +63,8 @@ function CategoriesPage() {
           </li>
         ))}
       </ul>
-
-      <Link to="/categories/add-category">
-        <button>Add a category</button>
-        </Link>
-
     </div>
   );
-}
+};
 
 export default CategoriesPage;

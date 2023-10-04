@@ -67,17 +67,17 @@ const handleDeleteCategory = () => {
         <div className="FavoriteCategory">
         <h2>Favorite Categories</h2>
 
+        <Link to="/my-favorites/edit/:favoritesId">
+        <button>Update category</button>
+        </Link>
+
+        <Link to="/add-pose/:poseId">
+        <button>Add a pose</button>
+        </Link>
+
         <button onClick={() => handleDeleteCategory(favorite.category_id)}>
           Delete Category
         </button>
-
-        <Link to="/my-favorites/edit/:favoritesId">
-        <button>Edit my favorites</button>
-        </Link>
-
-        <Link to="/my-favorites/edit/:favoritesId">
-        <button>Add a pose</button>
-        </Link>
 
         {favorite && (
             <>

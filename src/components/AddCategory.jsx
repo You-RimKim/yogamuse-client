@@ -6,6 +6,7 @@ const API_URL = "http://localhost:5005";
 function AddCategory(props) {
   const [category_name, setCategoryName] = useState("");
   const [category_description, setCategoryDescription] = useState("");
+  const storedToken = localStorage.getItem("authToken");
 
   const handleSubmit = (e) => {                        
     e.preventDefault();
@@ -13,14 +14,23 @@ function AddCategory(props) {
     const requestBody = { category_name, category_description };
 
     axios
-      .post(`${API_URL}/api/categories`, requestBody)
+    .post(
+      `${API_URL}/api/categories`,
+      requestBody,
+      { headers: { Authorization: `Bearer ${storedToken}` } }
+    )
       .then((response) => {
         // Reset the state
         setCategoryName("");
         setCategoryDescription("");
 
-        props.refreshCategories();
+        props.onCategoryAdded();
+        props.updateCategories((prevCategories) => [
+          ...prevCategories,
+          response.data, 
+        ]);
       })
+
       .catch((error) => console.log(error));
   };
 
