@@ -31,7 +31,7 @@ function App() {
 
         <Route path="/about" element={<AboutPage />} />
  
-        <Route path="/user" element={<UserProfile />} />
+        <Route path="/user" element={<IsPrivate><UserProfile/> </IsPrivate> } />
 
         <Route
           path="/categories/add-category"

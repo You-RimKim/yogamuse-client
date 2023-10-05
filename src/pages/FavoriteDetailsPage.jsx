@@ -98,36 +98,41 @@ const handleDeleteCategory = () => {
   
 
     return (
-        <div className="FavoriteCategory">
-        <h2>Favorite Categories</h2>
+        <div className="favoriteDetailsPage">
+          <div className="favoriteDetailsPageLinks">
+              <h2>Favorite Categories</h2>
 
-        <Link to="/my-favorites/edit/:favoritesId">
-        <button>Update category</button>
-        </Link>
+              <Link to="/my-favorites/edit/:favoritesId">
+              <button>Update category</button>
+              </Link>
 
-        <Link to="/add-pose/:poseId">
-        <button>Add a pose</button>
-        </Link>
+              <Link to="/add-pose/:poseId">
+              <button>Add a pose</button>
+              </Link>
 
-        <button onClick={() => handleDeleteCategory(favorite.category_id)}>
-          Delete Category
-        </button>
+              <button onClick={() => handleDeleteCategory(favorite.category_id)}>
+                Delete Category
+              </button>
 
-        {/* <button onClick={toggleAddPoseForm}>
-          "Add Pose"
-        </button> */}
+              {/* <button onClick={toggleAddPoseForm}>
+                "Add Pose"
+              </button> */}
 
-        {isAddingPose && (
-          <AddPose
-            onPoseAdded={handleAddPose}
-            // Pass any necessary props to the AddPose component
-          />
-        )}
+              {isAddingPose && (
+                <AddPose
+                  onPoseAdded={handleAddPose}
+                  // Pass any necessary props to the AddPose component
+                />
+              )}
+
+        </div>
 
         {favorite && (
             <>
             <h3>{favorite.category_name}</h3>
-            <p>{favorite.category_description}</p>
+            <div className="categoryDescription">
+              <p>{favorite.category_description}</p>
+            </div>
             <h4>Poses in {favorite.category_name}</h4>
             <ul>
                 {favorite.poses &&

@@ -107,11 +107,11 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="user-profile">
+    <div className="LoginPage"> {/* Reusing the LoginPage class */}
       <h2>User Profile</h2>
       {isEditing ? (
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="form-group">
             <label htmlFor="name">Name:</label>
             <input
               type="text"
@@ -121,7 +121,7 @@ const UserProfile = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="password">Password:</label>
             <input
               type="password"
@@ -131,7 +131,7 @@ const UserProfile = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input
               type="email"
@@ -141,7 +141,9 @@ const UserProfile = () => {
               onChange={handleInputChange}
             />
           </div>
-          <button type="submit">Save</button>
+          <div className="form-group">
+            <button type="submit">Save</button>
+          </div>
         </form>
       ) : (
         <div>
@@ -160,16 +162,17 @@ const UserProfile = () => {
       )}
 
       <form onSubmit={handleSubmit}>
-            {isDeleting && (
-              <div>
-                <p>
-                  Are you sure you want to delete your profile? This action cannot be undone.
-                </p>
-                <button type="submit">Confirm Deletion</button>
-              </div>
-            )}
-          </form>
-        </div>
+        {isDeleting && (
+          <div>
+            <p>
+              Are you sure you want to delete your profile? This action cannot
+              be undone.
+            </p>
+            <button type="submit">Confirm Deletion</button>
+          </div>
+        )}
+      </form>
+    </div>
       );
       };
 

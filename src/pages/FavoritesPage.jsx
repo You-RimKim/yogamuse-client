@@ -55,7 +55,7 @@ export default function FavoritesPage() {
   };
 
   return (
-      <div className="FavoritesPage">
+      <div className="favoritesPage">
         <h2>My Favorites</h2>
   
         <button onClick={toggleAddCategoryForm}>Add a category</button>

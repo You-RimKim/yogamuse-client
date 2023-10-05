@@ -1,10 +1,12 @@
 body, h1 {
   margin: 0;
   padding: 0;
+  z-index: 1;
 }
 
 body, button {
-  font-family: 'Sen', sans-serif
+  font-family: 'Sen', sans-serif;
+  z-index: 1;
 }
 
 button {
@@ -12,21 +14,35 @@ button {
   color: white;
   border: none; 
   transition: background-color 0.3s, color 0.3s;
+  z-index: 1;
 }
 
 button:hover {
   background-color: white; 
   color: black; 
+  z-index: 1;
 }
 
-body {
-  background-image: url('/public/img/background-sand.jpg'); /* Replace with your image path */
-  background-size: cover; /* Adjust as needed */
+/* body {
+  background-video: url('/public/img/sand.mp4');
+  background-size: cover; 
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Keeps the background fixed while scrolling */
+  background-attachment: fixed; 
   font-family: 'Sen', sans-serif;
-  position: relative; /* Allows positioning of pseudo-element */
-  z-index: 0; /* Ensure the body content appears above the overlay */
+  position: relative;
+  z-index: 0; 
+} */
+
+#video-background {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1; /* Place it behind the content */
+  background-size: cover;
 }
 
 body::before {
@@ -34,11 +50,11 @@ body::before {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vw;
+  width: 700%;
+  height: 700%;
   background-color: rgba(255, 255, 255, 0.3); 
   pointer-events: none; 
-  z-index: -1; 
+  z-index: 0; 
 
 }
 
@@ -56,7 +72,7 @@ h1 {
 h3 {
   font-family: 'Sen', sans-serif; 
   font-size: 100%; 
-  position: relative;
+  position: centered;
   top: -10%;
   left: 15%;
   transform: translateY(-50%);
@@ -74,6 +90,7 @@ h3 {
   color: white; 
   text-align: left;
   padding-left: 10px; 
+  z-index: 1;
 }
 
 .YogaMuseDescription {
@@ -81,20 +98,262 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  height: 15vh; 
+  height: 10vh; 
   font-family: 'Sen', sans-serif;
   font-weight: 50;
   font-size: 25px; 
   color: white; 
   text-align: left;
-  padding-left: 10px; 
+  padding-left: 200px; 
+  z-index: 1;
 }
+
+/* Add this CSS to your stylesheet or component's CSS-in-JS if you're using it */
+.about {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+  
+}
+
+.about h2 {
+
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+.about h3 {
+  margin: 20px 0;
+}
+
+.about h4 {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.about p {
+  text-align: left;
+  margin: 0 0 15px;
+  padding: 10px;
+}
+
+.about .circle-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Media query to adjust layout on smaller screens */
+@media (max-width: 768px) {
+  .about h4 {
+    text-align: center;
+  }
+  
+  .about .circle-placeholder {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.LoginPage {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.LoginPage h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+/* LoginPage.css */
+
+/* LoginPage.css */
+
+.LoginPage {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 50%; 
+}
+
+button[type="submit"]:hover {
+  background-color: white;
+}
+
+.error-message {
+  color: #FF0000;
+  margin-top: 10px;
+}
+
+p {
+  margin-top: 20px;
+}
+
+
+.SignupPage {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.SignupPage h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+.CategoryList {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.CategoryList h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+/* .ChosenCategory {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+} */
+
+.ChosenCategory {
+  background-color: rgba(241, 241, 240, 0.6); 
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.categoryDescription {
+  text-align: center;
+}
+
+.ChosenCategory h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+.ChosenCategory h3 {
+  background-color: white; /* White box for h3 */
+  display: inline-block; /* Keep the white box inline with h3 */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.ChosenCategory p {
+  text-align: left; 
+  margin: 10px 0;
+}
+
+.ChosenCategory img {
+  max-width: 20%;
+  height: auto;
+  padding: 20px;
+}
+
+
+.link-to-category {
+  color: black;
+  text-decoration: none;
+}
+
+.favoriteDetailsPage {
+  background-color: rgba(241, 241, 240, 0.6); 
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.favoriteDetailsPageLinks {
+  padding: 20px;
+}
+
+.favoriteDetailsPage h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+.favoriteDetailsPage h3 {
+  background-color: white; /* White box for h3 */
+  display: inline-block; /* Keep the white box inline with h3 */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.favoriteDetailsPage p {
+  text-align: left; 
+  margin: 10px 0;
+}
+
+.favoriteDetailsPage img {
+  max-width: 20%;
+  height: auto;
+  padding: 20px;
+}
+
+
+.link-to-category {
+  color: black;
+  text-decoration: none;
+}
+
 
 .FavoriteCategory {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 20px;
+  z-index: 1;
 }
 
 /* Header styles */
@@ -102,6 +361,7 @@ h2 {
   font-family: 'Sen', sans-serif;
   font-size: 24px;
   margin-bottom: 10px;
+  z-index: 1;
 }
 
 /* Buttons styles */
@@ -116,11 +376,13 @@ button {
   padding: 10px 15px;
   transition: background-color 0.3s, color 0.3s;
   text-decoration: none;
+  z-index: 1;
 }
 
 button:hover {
   background-color: white;
   color: black;
+  z-index: 1;
 }
 
 /* Add Pose button style */
@@ -172,4 +434,28 @@ img {
 /* Add Pose form styles */
 .add-pose-form {
   margin-top: 20px;
+}
+
+.favoritesPage {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.favoritesPage h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+.userProfile {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.userProfile h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
 }

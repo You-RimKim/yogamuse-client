@@ -1,11 +1,11 @@
 function HomePage() {
     return (
       <div>
-        <div class="YogaMuse">
+        <div className="YogaMuse">
           <h1>Yoga Muse</h1>
         </div>
 
-        <div class="YogaMuseDescription">
+        <div className="YogaMuseDescription">
           <h3>A platform for yoga teachers by yoga teachers</h3>
         </div>
       </div>
