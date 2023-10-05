@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 const API_URL = "http://localhost:5005";
 
@@ -92,5 +93,9 @@ function AddPose(props) {
     </div>
   );
 }
+
+AddPose.propTypes = {
+  onPoseAdded: PropTypes.func.isRequired,
+};
 
 export default AddPose;

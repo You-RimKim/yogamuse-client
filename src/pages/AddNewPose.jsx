@@ -40,7 +40,7 @@ function AddNewPose (props) {
         </>
       )}
 
-      <AddPose refreshNewPose={getPose} poseId={poseId} />
+      <AddPose refreshNewPose={getPose} poseId={poseId} favoritesId={favoritesId} />
 
       { newPose && newPose.poses.map((pose) => (
         <PoseCard key={pose._id} {...pose} /> 

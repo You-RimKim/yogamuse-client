@@ -2,10 +2,12 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import AddPose from "../components/AddPose";
 
 export default function FavoriteDetailsPage() {
   const [favorite, setFavorite] = useState(null);
   const [categories, setCategories] = useState([]);
+  const [isAddingPose, setIsAddingPose] = useState(false);
   const { favoritesId } = useParams();
   const {getToken} = useContext(AuthContext)
   const navigate = useNavigate();
@@ -36,6 +38,38 @@ useEffect(() => {
 
   fetchFavorite();
 }, []);
+
+// Function to toggle the Add Pose form visibility
+const toggleAddPoseForm = () => {
+  setIsAddingPose(!isAddingPose);
+};
+
+const handleAddPose = async () => {
+  try {
+    const storedToken = localStorage.getItem("authToken");
+    const response = await axios.post(
+      `http://localhost:5005/api/my-favorites/${favoritesId}`,
+
+      { 
+        english_name,
+        sanskrit_name,
+        pose_description,
+        pose_benefits,
+        url_png, },
+      {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      }
+    );
+
+    const newFavoritePose = response.data;
+    setFavoritePose((prevFavoritePose) => [...prevFavoritePose, newFavoritePose]);
+
+    toggleAddPoseForm();
+    fetchFavorites()
+  } catch (error) {
+    console.error("Error adding favorite pose:", error);
+  }
+};
 
 const handleDeleteCategory = () => {
   const storedToken = getToken();
@@ -78,6 +112,17 @@ const handleDeleteCategory = () => {
         <button onClick={() => handleDeleteCategory(favorite.category_id)}>
           Delete Category
         </button>
+
+        {/* <button onClick={toggleAddPoseForm}>
+          "Add Pose"
+        </button> */}
+
+        {isAddingPose && (
+          <AddPose
+            onPoseAdded={handleAddPose}
+            // Pass any necessary props to the AddPose component
+          />
+        )}
 
         {favorite && (
             <>

@@ -1,63 +1,28 @@
-// import { useState } from "react";
-// import axios from "axios";
+import { useState } from "react";
+import PropTypes from "prop-types"; // Import PropTypes for type checking
 
-// const API_URL = "http://localhost:5005";
+function AddCategory(props) {
+  const { onCategoryAdded, category_name, category_description, setCategoryName, setCategoryDescription } = props;
 
-// function AddCategory(props) {
-//   const [category_name, setcategory_name] = useState("");
-//   const [category_description, setcategory_description] = useState("");
-//   const storedToken = localStorage.getItem("authToken");
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-//   const handleSubmit = (e) => {                        
-//     e.preventDefault();
- 
-//     const requestBody = { category_name, category_description };
+    // Call the parent component's function to handle category addition
+    onCategoryAdded();
 
-//     axios
-//     .post(
-//       `${API_URL}/api/categories`,
-//       requestBody,
-//       { headers: { Authorization: `Bearer ${storedToken}` } }
-//     )
-//       .then((response) => {
-//         // Reset the state
-//         setcategory_name("");
-//         setcategory_description("");
+    // Reset form fields after submission
+    setCategoryName("");
+    setCategoryDescription("");
+  };
+}
 
-//         props.onCategoryAdded();
-//         props.updateCategories((prevCategories) => [
-//           ...prevCategories,
-//           response.data, 
-//         ]);
-//       })
+// Define PropTypes to specify the expected props types
+AddCategory.propTypes = {
+  onCategoryAdded: PropTypes.func.isRequired,
+  category_name: PropTypes.string.isRequired,
+  category_description: PropTypes.string.isRequired,
+  setCategoryName: PropTypes.func.isRequired,
+  setCategoryDescription: PropTypes.func.isRequired,
+};
 
-//       .catch((error) => console.log(error));
-//   };
-
-//   return (
-//     <div className="AddCategory">
-//       <h3>Add Category</h3>
-
-//       <form onSubmit={handleSubmit}>  
-//         <label>Category Name:</label>
-//         <input
-//           type="text"
-//           name="category_name"
-//           value={category_name}
-//           onChange={(e) => setcategory_name(e.target.value)}
-//         />
-
-//         <label>Description:</label>
-//         <textarea
-//           type="text"
-//           name="category_description"
-//           value={category_description}
-//           onChange={(e) => setcategory_description(e.target.value)}
-//         />
-//         <button type="submit">Submit</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default AddCategory;
+export default AddCategory;
