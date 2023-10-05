@@ -18,7 +18,7 @@ export default function CategoryDetailsPage() {
 
   function addToFavorites() {
     const storedToken = localStorage.getItem("authToken")
-    axios.post("http://localhost:5005/api/add-favorite", {...onePose}, { headers: { Authorization: `Bearer ${storedToken}` } })
+    axios.post("https://yogamuse.onrender.com/api/add-favorite", {...onePose}, { headers: { Authorization: `Bearer ${storedToken}` } })
 
   }
 

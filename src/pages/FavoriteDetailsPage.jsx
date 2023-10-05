@@ -8,7 +8,7 @@ import PoseCard from "../components/PoseCard";
 import { AuthContext } from "../context/auth.context";
 
 
-const API_URL = "http://localhost:5005";
+const API_URL = "https://yogamuse.onrender.com";
 
 function FavoriteDetailsPage() {
   const [favorite, setFavorite] = useState(null);
@@ -48,7 +48,7 @@ function FavoriteDetailsPage() {
     const storedToken = getToken();
 
     axios
-      .delete(`http://localhost:5005/api/my-favorites/${favoritesId}`, {
+      .delete(`https://yogamuse.onrender.com/api/my-favorites/${favoritesId}`, {
         headers: {
           Authorization: `Bearer ${storedToken}`,
         },

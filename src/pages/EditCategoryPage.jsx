@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5005";
+const API_URL = "https://yogamuse.onrender.com";
 
 function EditCategoryPage(props) {
   const [category_name, setcategory_name] = useState("");
@@ -82,7 +82,6 @@ function EditCategoryPage(props) {
 
         <button type="submit">Update Category</button>
 
-        {/* <input type="submit" value="Submit" /> */}
       </form>
 
       <button onClick={deleteCategory}>Delete Category</button>

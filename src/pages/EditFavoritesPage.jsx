@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5005";
+const API_URL = "https://yogamuse.onrender.com";
 
 function EditFavoritesPage(props) {
   const [category_name, setcategory_name] = useState("");
@@ -23,7 +23,7 @@ function EditFavoritesPage(props) {
   axios
         // API url needs to be adjusted
       .get(
-        `http://localhost:5005/api/my-favorites/${favoritesId}`,
+        `https://yogamuse.onrender.com/api/my-favorites/${favoritesId}`,
         { headers: { Authorization: `Bearer ${storedToken}` } }    
       )
       .then((response) => {
@@ -57,7 +57,7 @@ function EditFavoritesPage(props) {
 
     axios
     .put(
-      `http://localhost:5005/api/my-favorites/${favoritesId}`,
+      `https://yogamuse.onrender.com/api/my-favorites/${favoritesId}`,
       requestBody,
       { headers: { Authorization: `Bearer ${storedToken}` } }              
     )
@@ -72,7 +72,7 @@ function EditFavoritesPage(props) {
 
     axios
         .delete(
-          `http://localhost:5005/api/my-favorites/${favoritesId}`,
+          `https://yogamuse.onrender.com/api/my-favorites/${favoritesId}`,
           { headers: { Authorization: `Bearer ${storedToken}` } }           
         )
         .then(() => navigate("/my-favorites"))

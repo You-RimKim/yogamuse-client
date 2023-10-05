@@ -6,7 +6,7 @@ function AllPoses() {
 
 
   useEffect(() => {
-    axios.get("http://localhost:5005/api/poses")
+    axios.get("https://yogamuse.onrender.com/api/poses")
     .then((response)=> {
       console.log(response)
     })

@@ -17,7 +17,7 @@ const UserProfile = () => {
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`http://localhost:5005/api/user`, {
+      .get(`https://yogamuse.onrender.com/api/user`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -49,7 +49,7 @@ const UserProfile = () => {
   
       const storedToken = localStorage.getItem('authToken');
       axios
-        .put(`http://localhost:5005/api/user`, updatedUserInfo, {
+        .put(`https://yogamuse.onrender.com/api/user`, updatedUserInfo, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
@@ -64,7 +64,7 @@ const UserProfile = () => {
       const storedToken = localStorage.getItem('authToken');
 
       axios
-        .delete(`http://localhost:5005/api/user`, {
+        .delete(`https://yogamuse.onrender.com/api/user`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
@@ -78,7 +78,7 @@ const UserProfile = () => {
         });
 
         axios
-        .post(`http://localhost:5005/api/logout`, {}, {
+        .post(`https://yogamuse.onrender.com/api/logout`, {}, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then(() => {
