@@ -5,42 +5,42 @@ const API_URL = "http://localhost:5005";
 
 
 function AddPose(props) {
-  // const [id, setId] = useState("");
-  const [english_name, setEnglishName] = useState("");
-  const [sanskrit_name, setSanskritName] = useState("");
-  const [pose_description, setPoseDescription] = useState("");
-  const [pose_benefits, setPoseBenefits] = useState("");
-  const [url_png, setUrlPng] = useState("");
+  const [english_name, setenglish_name] = useState("");
+  const [sanskrit_name, setsanskrit_name] = useState("");
+  const [pose_description, setpose_description] = useState("");
+  const [pose_benefits, setpose_benefits] = useState("");
 
-  
+  const getToken = () => {
+    return localStorage.getItem("authToken")
+  }
+
   const handleSubmit = (e) => {      
     e.preventDefault();
 
     // We need the category id when creating the new pose
-    const { categoryId } = props;
-    // Create an object representing the body of the POST request
+    const { favoritesId } = props;
     const requestBody = { 
-      id, 
       english_name, 
       sanskrit_name,
       pose_description,
       pose_benefits,
-      url_png,
-      category };
+     };
  
     axios
-      .post(`${API_URL}/api/poses`, requestBody)
+      .post(`${API_URL}/api/my-favorites/${favoritesId}/add-pose`, 
+      requestBody, 
+        { headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
       .then((response) => {
-        // Reset the state to clear the inputs
-        setEnglishName("");
-        setSanskritName("");
-        setPoseDescription("");
-        setPoseBenefits("");
-        setUrlPng("");
+
+        setenglish_name("");
+        setsanskrit_name("");
+        setpose_description("");
+        setpose_benefits("");
       
-        // Invoke the callback function coming through the props
-        // from the CategoryDetailsPage, to refresh the category details
-        props.refreshCategory();
+        props.refreshFavorite();
       })
       .catch((error) => console.log(error));
   };
@@ -48,42 +48,48 @@ function AddPose(props) {
   
   return (
     <div className="AddPose">
-      <h3>Add New Pose</h3>
+      <h2>Add New Pose</h2>
       
       <form onSubmit={handleSubmit}>
+      <div className="inputSubmit">
         <label>English Name:</label>
         <input
           type="text"
           name="english_name"
           value={english_name}
-          onChange={(e) => setEnglishName(e.target.value)}
+          onChange={(e) => setenglish_name(e.target.value)}
         />
+        </div>
 
+        <div className="inputSubmit">
         <label>Sanskrit Name:</label>
         <textarea
           type="text"
           name="sanskrit_name"
           value={sanskrit_name}
-          onChange={(e) => setSanskritName(e.target.value)}
+          onChange={(e) => setsanskrit_name(e.target.value)}
         />
+        </div>
 
+        <div className="inputSubmit">
         <label>Pose Description:</label>
         <textarea
           type="text"
           name="pose_description"
           value={pose_description}
-          onChange={(e) => setPoseDescription(e.target.value)}
+          onChange={(e) => setpose_description(e.target.value)}
         />
+        </div>
 
+        <div className="inputSubmit">
         <label>Pose Benefits:</label>
         <textarea
           type="text"
           name="pose_benefits"
           value={pose_benefits}
-          onChange={(e) => setPoseBenefits(e.target.value)}
+          onChange={(e) => setpose_benefits(e.target.value)}
         />
-
-        {/* url_png here */}
+         </div>
 
         <button type="submit">Add Pose</button>
       </form>

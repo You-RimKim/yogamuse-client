@@ -1,98 +1,477 @@
-/* index.css */
-
-body {
+body, h1 {
   margin: 0;
+  padding: 0;
+  z-index: 1;
 }
 
-a {
-  list-style: none;
-  color: black;
+body, button {
+  font-family: 'Sen', sans-serif;
+  z-index: 1;
 }
 
-button,
-select {
-  padding: 5px 10px;
-  min-width: 50px;
-  margin: 5px;
-  font-size: 18px;
-}
-
-label {
-  width: 200px;
-  display: block;
-}
-
-input,
-textarea {
-  width: 200px;
-  padding: 10px;
-  display: inline-block;
-  margin: 10px;
-}
-
-.Navbar {
-  background: #515f7d;
+button {
+  background-color: transparent;
   color: white;
-  padding: 0px 20px;
-  box-shadow: 0px 1px 2px gray;
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 5px;
+  border: none; 
+  transition: background-color 0.3s, color 0.3s;
+  z-index: 1;
 }
 
-.Navbar li {
-  list-style: none;
-  color: white;
-  font-size: 24px;
-  font-weight: 600;
+button:hover {
+  background-color: white; 
+  color: black; 
+  z-index: 1;
 }
 
-.card {
-  width: 400px;
-  padding: 10px;
-  box-shadow: 0px 2px 3px grey;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  background: #94a7c8;
-  border-radius: 4px;
+/* body {
+  background-video: url('/public/img/sand.mp4');
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  font-family: 'Sen', sans-serif;
+  position: relative;
+  z-index: 0; 
+} */
+
+#video-background {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1; /* Place it behind the content */
+  background-size: cover;
 }
 
-.CategoryCard h3::after {
-  content: url("https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/m3/icon-expand.png");
-  margin-left: 5px;
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 700%;
+  height: 700%;
+  background-color: rgba(255, 255, 255, 0.3); 
+  pointer-events: none; 
+  z-index: 0; 
+
 }
 
-.EditCategoryPage,
-.AddCategory,
-.AddPose {
-  background: #f9eec3;
-  border: 1px solid grey;
-  box-shadow: 0px 2px 3px grey;
-  width: 400px;
-  text-align: center;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  padding: 10px;
-  border-radius: 4px;
+/* Style the h1 element */
+h1 {
+  font-family: "La Belle Aurore", cursive; 
+  font-size: 400%; 
+  position: relative;
+  top: 50%;
+  left: 15%;
+  transform: translateY(-50%);
+  z-index: 2;
 }
 
-.EditCategoryPage {
-  background-color: rgb(239, 196, 88);
+h3 {
+  font-family: 'Sen', sans-serif; 
+  font-size: 100%; 
+  position: centered;
+  top: -10%;
+  left: 15%;
+  transform: translateY(-50%);
+  z-index: 2;
 }
 
-.EditCategoryPage form,
-.AddPose form,
-.AddCategory form {
+.YogaMuse {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 50vh; 
+  font-family: "La Belle Aurore", sans-serif; 
+  font-size: 25px; 
+  color: white; 
+  text-align: left;
+  padding-left: 10px; 
+  z-index: 1;
+}
+
+.YogaMuseDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 10vh; 
+  font-family: 'Sen', sans-serif;
+  font-weight: 50;
+  font-size: 25px; 
+  color: white; 
+  text-align: left;
+  padding-left: 200px; 
+  z-index: 1;
+}
+
+/* Add this CSS to your stylesheet or component's CSS-in-JS if you're using it */
+.about {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+  
+}
+
+.about h2 {
+
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+.about h3 {
+  margin: 20px 0;
+}
+
+.about h4 {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.about p {
+  text-align: left;
+  margin: 0 0 15px;
+  padding: 10px;
+}
+
+.about .circle-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-.AddPose button,
-.AddCategory button {
+/* Media query to adjust layout on smaller screens */
+@media (max-width: 768px) {
+  .about h4 {
+    text-align: center;
+  }
+  
+  .about .circle-placeholder {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.LoginPage {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.LoginPage h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+/* LoginPage.css */
+
+/* LoginPage.css */
+
+.LoginPage {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
   display: block;
+  margin-bottom: 5px;
 }
 
-.PoseCard {
-  background-color: #dfeef9;
+.form-group input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 50%; 
+}
+
+button[type="submit"]:hover {
+  background-color: white;
+}
+
+.error-message {
+  color: #FF0000;
+  margin-top: 10px;
+}
+
+p {
+  margin-top: 20px;
+}
+
+
+.SignupPage {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.SignupPage h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+.CategoryList {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.CategoryList h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+/* .ChosenCategory {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+} */
+
+.ChosenCategory {
+  background-color: rgba(241, 241, 240, 0.6); 
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.categoryDescription {
+  text-align: center;
+}
+
+.ChosenCategory h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+.ChosenCategory h3 {
+  background-color: white; /* White box for h3 */
+  display: inline-block; /* Keep the white box inline with h3 */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.ChosenCategory p {
+  text-align: left; 
+  margin: 10px 0;
+}
+
+.ChosenCategory img {
+  max-width: 20%;
+  height: auto;
+  padding: 20px;
+}
+
+.link-to-category {
+  color: black;
+  text-decoration: none;
+}
+
+.AddCategory h3 {
+  padding-top: 50px;
+  padding: 10px;
+}
+
+.deleteCategory {
+  padding-bottom: 40px;
+}
+
+.newFaveCategory {
+  padding-top: 50px;
+}
+
+.favoriteDetailsPage {
+  background-color: rgba(241, 241, 240, 0.6); 
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.favoriteDetailsPageLinks {
+  padding: 20px;
+}
+
+.favoriteDetailsPage h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+.favoriteDetailsPage h3 {
+  background-color: white; /* White box for h3 */
+  display: inline-block; /* Keep the white box inline with h3 */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.favoriteDetailsPage p {
+  text-align: left; 
+  margin: 10px 0;
+}
+
+.favoriteDetailsPage img {
+  max-width: 20%;
+  height: auto;
+  padding: 20px;
+}
+
+
+.link-to-category {
+  color: black;
+  text-decoration: none;
+}
+
+
+.FavoriteCategory {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  z-index: 1;
+}
+
+.inputSubmit {
+  padding: 10px;
+}
+
+/* Header styles */
+h2 {
+  font-family: 'Sen', sans-serif;
+  font-size: 24px;
+  margin-bottom: 10px;
+  z-index: 1;
+}
+
+/* Buttons styles */
+button {
+  font-family: 'Sen', sans-serif;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  padding: 10px 15px;
+  transition: background-color 0.3s, color 0.3s;
+  text-decoration: none;
+  z-index: 1;
+}
+
+button:hover {
+  background-color: white;
+  color: black;
+  z-index: 1;
+}
+
+/* Add Pose button style */
+button.add-pose-button {
+  margin-top: 20px;
+}
+
+/* Category information styles */
+h3 {
+  font-family: 'Sen', sans-serif;
+  font-size: 20px;
+}
+
+p {
+  font-family: 'Sen', sans-serif;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Poses list styles */
+h4 {
+  font-family: 'Sen', sans-serif;
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 20px;
+}
+
+/* Pose details styles */
+h5 {
+  font-family: 'Sen', sans-serif;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Add Pose form styles */
+.add-pose-form {
+  margin-top: 20px;
+}
+
+.favoritesPage {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.favoritesPage h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
+.userProfile {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.userProfile h2 {
+  padding: 20px;
+  margin-top: 0;
+  text-align: center;
 }

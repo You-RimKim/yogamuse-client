@@ -5,15 +5,21 @@ import { useParams, useNavigate } from "react-router-dom";
 const API_URL = "http://localhost:5005";
 
 function EditCategoryPage(props) {
-  const [category_name, setCategoryName] = useState("");
-  const [category_description, setCategoryDescription] = useState("");
+  const [category_name, setcategory_name] = useState("");
+  const [category_description, setcategory_description] = useState("");
 
   const { categoryId } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {                                  
-    axios
-      .get(`${API_URL}/api/categories/${categoryId}`)
+  useEffect(() => {        
+    
+    const storedToken = localStorage.getItem('authToken');
+
+  axios
+      .get(
+        `${API_URL}/api/categories/${categoryId}`,
+        { headers: { Authorization: `Bearer ${storedToken}` } }    
+      )
       .then((response) => {
         const oneCategory = response.data;
         setTitle(oneCategory.category_name);
@@ -27,26 +33,32 @@ function EditCategoryPage(props) {
     e.preventDefault();
 
     const requestBody = { category_name, category_description };
- 
+
+    const storedToken = localStorage.getItem('authToken');  
+
     axios
-      .put(`${API_URL}/api/categories/${categoryId}`, requestBody)
-      .then((response) => {
-        // Once the request is resolved successfully and the category
-        // is updated we navigate back to the details page
-        navigate(`/categories/${categoryId}`)
-      });
+    .put(
+      `${API_URL}/api/categoriescategories/${categoryId}`,
+      requestBody,
+      { headers: { Authorization: `Bearer ${storedToken}` } }              
+    )
+    .then((response) => {
+      navigate(`/categories/${categoryId}`)
+    });
   };
 
   const deleteCategory = () => {                   
 
-    axios
-      .delete(`${API_URL}/api/categories/${categoryId}`)
-      .then(() => {
+    const storedToken = localStorage.getItem('authToken');      
 
-        navigate("/categories");
-      })
-      .catch((err) => console.log(err));
-  };  
+    axios
+        .delete(
+          `${API_URL}/api/categories/${categoryId}`,
+          { headers: { Authorization: `Bearer ${storedToken}` } }           
+        )
+        .then(() => navigate("/categories"))
+        .catch((err) => console.log(err));
+    };
   
   return (
     <div className="EditCategoryPage">
@@ -58,14 +70,14 @@ function EditCategoryPage(props) {
           type="text"
           name="category_name"
           value={category_name}
-          onChange={(e) => setCategoryName(e.target.value)}
+          onChange={(e) => setcategory_name(e.target.value)}
         />
         
         <label>Category Description:</label>
         <textarea
           name="category_description"
           value={category_description}
-          onChange={(e) => setCategoryDescription(e.target.value)}
+          onChange={(e) => setcategory_description(e.target.value)}
         />
 
         <button type="submit">Update Category</button>

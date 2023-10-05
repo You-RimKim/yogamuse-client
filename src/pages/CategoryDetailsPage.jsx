@@ -1,59 +1,53 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
-import AddPose from "../components/AddPose";
-import PoseCard from "../components/PoseCard";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom"
+//import { Link, useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5005"; 
+export default function CategoryDetailsPage() {
+  const [onePose, setOnePose] = useState({});
 
+  const { category } = useParams()
 
-function CategoryDetailsPage (props) {
-  const [category, setCategory] = useState(null);
+  //const navigate = useNavigate();
 
-  const { categoryId } = useParams();
+  async function fetchPose() {
+    const resp = await fetch(`https://yoga-api-nzy4.onrender.com/v1/categories?name=${category}`)
+    const data = await resp.json();
+    setOnePose(data)
+  }
 
-  const getCategory = () => {        
-    axios
-      .get(`${API_URL}/api/categories/${categoryId}`)
-      .then((response) => {
-        const oneCategory = response.data;
-        setCategory(oneCategory);
-      })
-      .catch((error) => console.log(error));
-  };
+  function addToFavorites() {
+    const storedToken = localStorage.getItem("authToken")
+    axios.post("http://localhost:5005/api/add-favorite", {...onePose}, { headers: { Authorization: `Bearer ${storedToken}` } })
 
-  useEffect(()=> {                   
-    getCategory();
-  }, [] );
+  }
 
-  
+  useEffect(() => {
+    fetchPose()
+  }, [])
+
+  console.log(onePose)
   return (
-    <div className="CategoryDetails">
-      
-      {category && (
-        <>
-          <h1>{category.category_name}</h1>
-          <p>{category.category_description}</p>
-        </>
-      )}
-
-      <AddPose refreshCategory={getCategory} categoryId={categoryId} />
-
-      { category && category.poses.map((pose) => (
-        <PoseCard key={pose._id} {...pose} /> 
-      ))} 
-      
- 
-      <Link to="/categories">
-        <button>Back to categories</button>
-      </Link>
-      
-      <Link to={`/categories/edit/${categoryId}`}>
-        <button>Edit category</button>
-      </Link>      
-      
+    <div className="ChosenCategory">
+      <h2>Chosen Category</h2>
+      <h3>{onePose.category_name}</h3>
+      <div className="categoryDescription">
+        <p>{onePose.category_description}</p>
+      </div>
+      <button onClick={addToFavorites}>Add to Favorites</button>
+      <h4>Poses in {onePose.category_name}</h4>
+      <ul>
+        {onePose.poses &&
+          onePose.poses.map((pose) => (
+            <li key={pose.id}>
+              <h5>{pose.english_name}</h5>
+              <h5>{pose.sanskrit_name}</h5>
+              <img src={pose.url_svg} alt={pose.english_name} />
+              <p>{pose.pose_description}</p>
+              <p>{pose.pose_benefits}</p>
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }
- 
-export default CategoryDetailsPage;
