@@ -124,6 +124,10 @@ function Navbar() {
         <button>Home</button>
       </Link>
 
+      <Link to="/about">
+        <button>About</button>
+      </Link>
+
       {isLoggedIn && (
         <>
           <Link to="/categories">

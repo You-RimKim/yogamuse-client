@@ -53,7 +53,7 @@ function CategoriesPage() {
 
 
   return (
-    <div>
+    <div className="CategoryList">
       <h2>Choose a Category</h2>
       <ul>
         {categories.map((category) => (
