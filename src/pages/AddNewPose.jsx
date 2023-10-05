@@ -1,55 +1,3 @@
-// import { useState } from "react";
-// import PropTypes from "prop-types";
-
-// function AddNewPose(props) {
-//   const {
-//     onPoseAdded,
-//     favoritesId, // Receive favoritesId from props
-//   } = props;
-
-//   const [english_name, setEnglishName] = useState("");
-//   const [sanskrit_name, setSanskritName] = useState("");
-//   const [pose_description, setPoseDescription] = useState("");
-//   const [pose_benefits, setPoseBenefits] = useState("");
-//   const [url_png, setUrlPng] = useState("");
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//     // Call the onPoseAdded function passed from the parent component
-//     onPoseAdded();
-
-//     setEnglishName("");
-//     setSanskritName("");
-//     setPoseDescription("");
-//     setPoseBenefits("");
-//     setUrlPng("");
-//   };
-
-//   // ... Rest of the component code ...
-
-//   return (
-//     <div>
-//       <h3>Add Pose</h3>
-//       <form onSubmit={handleSubmit}> 
-
-//         <button type="submit">Submit</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// AddNewPose.propTypes = {
-//   onPoseAdded: PropTypes.func.isRequired,
-//   favoritesId: PropTypes.string.isRequired, 
-// };
-
-// export default AddNewPose;
-
-
-
-
-
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
@@ -68,7 +16,7 @@ function AddNewPose (props) {
     const storedToken = localStorage.getItem("authToken");
   axios
       .get(
-        `${API_URL}/api/categories/${poseId}`,
+        `${API_URL}/api/categories/${favoritesId}`,
         { headers: { Authorization: `Bearer ${storedToken}` } }
       )
       .then((response) => {

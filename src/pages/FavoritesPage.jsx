@@ -86,6 +86,7 @@ export default function FavoritesPage() {
               <h3>Add Category</h3>
   
               <form>
+                <div>
                 <label>Category Name:</label>
                 <input
                   type="text"
@@ -93,7 +94,9 @@ export default function FavoritesPage() {
                   value={category_name}
                   onChange={(e) => setCategoryName(e.target.value)}
                 />
+                </div>
   
+                <div>
                 <label>Description:</label>
                 <textarea
                   type="text"
@@ -101,6 +104,7 @@ export default function FavoritesPage() {
                   value={category_description}
                   onChange={(e) => setCategoryDescription(e.target.value)}
                 />
+                </div>
   
                 <button onClick={handleAddFavoriteCategory} type="button">
                   Submit

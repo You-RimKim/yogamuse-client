@@ -304,6 +304,10 @@ p {
   text-decoration: none;
 }
 
+.AddCategory h3 {
+  padding-top: 50px;
+}
+
 .favoriteDetailsPage {
   background-color: rgba(241, 241, 240, 0.6); 
   padding: 20px;
