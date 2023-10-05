@@ -38,6 +38,7 @@ function CategoriesPage() {
               id: level,
               category_name: level.charAt(0).toUpperCase() + level.slice(1), 
               poses: levelData.poses,
+              isLevelCategory: true,
             };
           })
         );

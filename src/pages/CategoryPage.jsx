@@ -5,14 +5,14 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function CategoryPage() {
-  const { categoryName } = useParams();
+  const { category_name } = useParams();
   const [categoryData, setCategoryData] = useState(null);
 
   useEffect(() => {
     const fetchCategoryData = async () => {
       try {
         const response = await axios.get(
-          `https://yoga-api-nzy4.onrender.com/v1/categories?name=${categoryName}`
+          `https://yoga-api-nzy4.onrender.com/v1/categories?name=${category_name}`
         );
         setCategoryData(response.data[0]);
       } catch (error) {
@@ -21,7 +21,7 @@ function CategoryPage() {
     };
 
     fetchCategoryData();
-  }, [categoryName]);
+  }, [category_name]);
 
   if (!categoryData) {
     return <div>Loading...</div>;

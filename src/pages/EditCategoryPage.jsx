@@ -5,8 +5,8 @@ import { useParams, useNavigate } from "react-router-dom";
 const API_URL = "http://localhost:5005";
 
 function EditCategoryPage(props) {
-  const [category_name, setCategoryName] = useState("");
-  const [category_description, setCategoryDescription] = useState("");
+  const [category_name, setcategory_name] = useState("");
+  const [category_description, setcategory_description] = useState("");
 
   const { categoryId } = useParams();
   const navigate = useNavigate();
@@ -70,14 +70,14 @@ function EditCategoryPage(props) {
           type="text"
           name="category_name"
           value={category_name}
-          onChange={(e) => setCategoryName(e.target.value)}
+          onChange={(e) => setcategory_name(e.target.value)}
         />
         
         <label>Category Description:</label>
         <textarea
           name="category_description"
           value={category_description}
-          onChange={(e) => setCategoryDescription(e.target.value)}
+          onChange={(e) => setcategory_description(e.target.value)}
         />
 
         <button type="submit">Update Category</button>

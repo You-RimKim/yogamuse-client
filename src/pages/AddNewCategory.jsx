@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 // import { Link } from "react-router-dom";
-import AddCategory from "../components/AddCategory";
+// import AddCategory from "../components/AddCategory";
 import CategoryCard from "../components/CategoryCard";
 
 const API_URL = "http://localhost:5005";
