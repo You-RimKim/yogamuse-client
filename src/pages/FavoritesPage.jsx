@@ -106,9 +106,12 @@ export default function FavoritesPage() {
                 />
                 </div>
   
+                <div className="inputSubmit">
                 <button onClick={handleAddFavoriteCategory} type="button">
                   Submit
                 </button>
+                </div>
+
               </form>
             </div>
           </div>

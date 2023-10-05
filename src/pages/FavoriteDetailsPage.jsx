@@ -3,7 +3,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import AddPoseForm from "../components/AddPoseForm";
 import AddPose from "../components/AddPose";
 import PoseCard from "../components/PoseCard";
 import { AuthContext } from "../context/auth.context";
@@ -73,17 +72,23 @@ function FavoriteDetailsPage() {
           <button>Update category</button>
         </Link> */}
 
-        <button onClick={handleDeleteCategory}>Delete Category</button>
+        <div className="deleteCategory">
+          <button onClick={handleDeleteCategory}>Delete Category</button>
+        </div>
 
+        <div classname="newFaveCategory">
         {favorite && (
           <>
             <h3>{favorite.category_name}</h3>
             <p>{favorite.category_description}</p>
           </>
         )}
+        </div>
 
+        <div>
         <AddPose favoritesId={favoritesId}
         refreshFavorite={refreshPoseList} />
+        </div>
 
         {favorite &&
           favorite.poses &&

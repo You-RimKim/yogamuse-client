@@ -48,9 +48,10 @@ function AddPose(props) {
   
   return (
     <div className="AddPose">
-      <h3>Add New Pose</h3>
+      <h2>Add New Pose</h2>
       
       <form onSubmit={handleSubmit}>
+      <div className="inputSubmit">
         <label>English Name:</label>
         <input
           type="text"
@@ -58,7 +59,9 @@ function AddPose(props) {
           value={english_name}
           onChange={(e) => setenglish_name(e.target.value)}
         />
+        </div>
 
+        <div className="inputSubmit">
         <label>Sanskrit Name:</label>
         <textarea
           type="text"
@@ -66,7 +69,9 @@ function AddPose(props) {
           value={sanskrit_name}
           onChange={(e) => setsanskrit_name(e.target.value)}
         />
+        </div>
 
+        <div className="inputSubmit">
         <label>Pose Description:</label>
         <textarea
           type="text"
@@ -74,7 +79,9 @@ function AddPose(props) {
           value={pose_description}
           onChange={(e) => setpose_description(e.target.value)}
         />
+        </div>
 
+        <div className="inputSubmit">
         <label>Pose Benefits:</label>
         <textarea
           type="text"
@@ -82,6 +89,7 @@ function AddPose(props) {
           value={pose_benefits}
           onChange={(e) => setpose_benefits(e.target.value)}
         />
+         </div>
 
         <button type="submit">Add Pose</button>
       </form>
