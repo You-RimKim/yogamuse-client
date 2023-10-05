@@ -4,7 +4,7 @@ import axios from "axios";
 // import AddCategory from "../components/AddCategory";
 import CategoryCard from "../components/CategoryCard";
 
-const API_URL = "http://localhost:5005";
+const API_URL = "https://yogamuse.onrender.com";
 
 
 function AddNewCategory() {

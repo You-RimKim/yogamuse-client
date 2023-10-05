@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import AddPose from "../components/AddPose";
 import PoseCard from "../components/PoseCard";
 
-const API_URL = "http://localhost:5005"; 
+const API_URL = "https://yogamuse.onrender.com"; 
 
 
 function AddNewPose (props) {
