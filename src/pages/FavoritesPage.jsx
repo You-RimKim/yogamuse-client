@@ -16,7 +16,7 @@ export default function FavoritesPage() {
   const fetchFavorites = async () => {
     try {
       const storedToken = localStorage.getItem("authToken");
-      const response = await axios.get("https://yogamuse.onrender.com/api/my-favorites", {
+      const response = await axios.get("http://localhost:5005/api/my-favorites", {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
 
@@ -34,7 +34,7 @@ export default function FavoritesPage() {
     try {
       const storedToken = localStorage.getItem("authToken");
       const response = await axios.post(
-        "https://yogamuse.onrender.com/api/my-favorites",
+        "http://localhost:5005/api/my-favorites",
 
         { 
           category_name, 

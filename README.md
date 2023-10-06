@@ -88,7 +88,7 @@
     - Slides: 
     - Github Repository Backend: https://github.com/You-RimKim/yogamuse-server
     - Github Repository Frontend: https://github.com/You-RimKim/yogamuse-client
-    - Deployment Backend: https://yogamuse.onrender.com
+    - Deployment Backend: http://localhost:5005
     - Deployment Frontend:
 
 

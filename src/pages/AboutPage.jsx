@@ -1,4 +1,8 @@
 import React from 'react';
+import image1 from "../img/image1.jpg";
+import image2 from "../img/image2.jpg";
+import image3 from "../img/image3.jpg";
+import image4 from "../img/image4.jpg";
 
 const AboutPage = () => {
   return (
@@ -12,7 +16,7 @@ const AboutPage = () => {
           </p>
       <h3>What Makes Us Unique?</h3>
       <div className="circle-placeholder">
-          <img src="your-image-url-1.jpg" alt="Image 1" />
+          <img src={image1} alt="Image 1" />
       </div>
       <h4>Yogis, For Yogis:</h4>
           <p>
@@ -21,7 +25,7 @@ const AboutPage = () => {
           We know that every yogi is unique, and our platform reflects this diversity, offering something for everyone.
           </p>
       <div className="circle-placeholder">
-          <img src="your-image-url-1.jpg" alt="Image 2" />
+          <img src={image2} alt="Image 2" />
       </div>
       <h4>Discover Asanas with Ease:</h4>
           <p>
@@ -29,7 +33,7 @@ const AboutPage = () => {
           whether it's for flexibility, strength, balance, or relaxation. With our intuitive interface, you can explore asanas effortlessly, unlocking the power of each pose.
           </p>
       <div className="circle-placeholder">
-          <img src="your-image-url-1.jpg" alt="Image 3" />
+          <img src={image3} alt="Image 3" />
       </div>
       <h4>Create Your Own Flows:</h4>
           <p>
@@ -38,7 +42,7 @@ const AboutPage = () => {
           Let your creativity flow as you design the perfect practice for yourself or your students.
           </p>
       <div className="circle-placeholder">
-          <img src="your-image-url-1.jpg" alt="Image 4" />
+          <img src={image4} alt="Image 4" />
       </div>
       <h4>Inspiration at Your Fingertips:</h4>
           <p>

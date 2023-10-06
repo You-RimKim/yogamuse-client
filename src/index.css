@@ -138,19 +138,6 @@ h3 {
   padding: 10px;
 }
 
-.about .circle-placeholder {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
 /* Media query to adjust layout on smaller screens */
 @media (max-width: 768px) {
   .about h4 {
